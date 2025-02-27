@@ -16,7 +16,7 @@ const LandingPage = () => {
       <div className="landing-content">
         <div className="logo-container">
           <div className="logo-icon">🔮</div>
-          <h1>Maha Kumbh</h1>
+          <h1 className="font">SurakshaMitra</h1>
         </div>
         <h2>Discover Your Digital Presence</h2>
         <p>Unlock powerful insights about your online footprint with our secure platform.</p>
