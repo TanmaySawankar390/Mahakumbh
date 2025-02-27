@@ -10,7 +10,7 @@ const UsersList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/users");
+        const response = await fetch("https://mahakumbh-5.onrender.com/api/users");
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -46,7 +46,7 @@ const UsersList = () => {
         <h1>User Management</h1>
         <p>All registered users in the system</p>
         <div className="button-container">
-          <Link to="/dashboard" className="back-button">
+          <Link to="/admin-dashboard" className="back-button">
             ← Back to Dashboard
           </Link>
         </div>

@@ -9,7 +9,6 @@ import {
   Route,
   Routes,
   Navigate,
-  Link,
 } from "react-router-dom";
 import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
@@ -18,6 +17,7 @@ import UserIPFetcher from "./components/UserIPFetcher";
 import DashboardLayout from "./components/DashboardLayout";
 import LandingPage from "./components/LandingPage";
 import UsersList from "./components/UsersList";
+import AdminDashboard from "./components/AdminDashboard"; // New Admin Dashboard component
 import "./App.css";
 
 // Protected route wrapper
@@ -50,7 +50,10 @@ const App = () => {
 };
 
 const AppContent = () => {
-  const { isLoading, error, isAuthenticated } = useAuth0();
+  const { isLoading, error, isAuthenticated, user } = useAuth0();
+
+  // Fetch role from Auth0 metadata (You should set this up in Auth0 Rules)
+  const role = user?.["https://your-app.com/roles"] || "user"; // Default role is "user"
 
   if (isLoading) {
     return (
@@ -80,16 +83,22 @@ const AppContent = () => {
   return (
     <div className="app-container">
       <Routes>
+        {/* Redirect Users Based on Role */}
         <Route
           path="/"
           element={
             isAuthenticated ? (
-              <Navigate to="/dashboard" replace />
+              role === "user" ? (
+                <Navigate to="/dashboard" replace />
+              ) : (
+                <Navigate to="/admin-dashboard" replace />
+              )
             ) : (
               <LandingPage />
             )
           }
         />
+        {/* User Dashboard */}
         <Route
           path="/dashboard"
           element={
@@ -102,10 +111,14 @@ const AppContent = () => {
             />
           }
         />
+        {/* Admin Dashboard */}
         <Route
-          path="/profile"
-          element={<ProtectedRoute component={Profile} />}
+          path="/admin-dashboard"
+          element={<ProtectedRoute component={AdminDashboard} />}
         />
+        {/* Profile Page */}
+        <Route path="/profile" element={<ProtectedRoute component={Profile} />} />
+        {/* Users List */}
         <Route path="/users" element={<UsersList />} />
       </Routes>
     </div>
