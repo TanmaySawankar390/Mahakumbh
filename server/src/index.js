@@ -12,8 +12,13 @@ connectDB();
 
 const app = express();
 
-// Enable CORS for all routes
-app.use(cors());
+// Replace default CORS config with specific origin and credentials options
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 // Middleware to parse JSON requests
 app.use(express.json());
