@@ -115,14 +115,14 @@ const UserIPFetcher = () => {
       </div>
       
       {/* IP Info Section */}
-      <div className="ip-info">
+      {/* <div className="ip-info">
         <h3>What is an IP Address?</h3>
         <p>
           Your IP address is your device's unique identifier on the internet.
           It's like a digital address that allows websites and services to send
           information back to your device.
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };
