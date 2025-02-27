@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // Import Link for navigation
 import LogoutButton from "./LogoutButton";
 import UserLocationDisplay from "./UserLocationDisplay";
 import UserIPFetcher from "./UserIPFetcher";
@@ -56,7 +57,8 @@ const DashboardLayout = () => {
       <div className="ip-header">
         <h1>Mahakumbh Digital Presence</h1>
         <p>Discover your online footprint and digital identity</p>
-        <div className="logout-button-container">
+        <div className="button-container">
+          <Link to="/profile" className="profile-button">👤 Profile</Link>
           <LogoutButton />
         </div>
       </div>

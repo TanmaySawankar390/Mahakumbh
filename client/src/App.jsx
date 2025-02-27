@@ -104,18 +104,8 @@ const AppContent = () => {
             />
           }
         />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute
-              component={() => (
-                <DashboardLayout>
-                  <Profile />
-                </DashboardLayout>
-              )}
-            />
-          }
-        />
+        <Route path="/profile" element={<ProtectedRoute component={Profile} />} />
+
       </Routes>
     </div>
   );
