@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import LogoutButton from "./LogoutButton";
 import UserLocationDisplay from "./UserLocationDisplay";
 
-const UserIPFetcher = () => {
+const DashboardLayout = () => {
   const [ip, setIp] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -134,4 +134,4 @@ const UserIPFetcher = () => {
   );
 };
 
-export default UserIPFetcher;
+export default DashboardLayout;

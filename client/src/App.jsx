@@ -1,13 +1,24 @@
-import React from 'react';
-import { Auth0Provider, useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import { BrowserRouter as Router, Route, Routes, Navigate, Link } from 'react-router-dom';
-import LoginButton from './components/LoginButton';
-import LogoutButton from './components/LogoutButton';
-import Profile from './components/Profile';
-import UserIPFetcher from './components/UserIPFetcher';
-import DashboardLayout from './components/DashboardLayout';
-import LandingPage from './components/LandingPage';
-import './App.css';
+import React from "react";
+import {
+  Auth0Provider,
+  useAuth0,
+  withAuthenticationRequired,
+} from "@auth0/auth0-react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+  Link,
+} from "react-router-dom";
+import LoginButton from "./components/LoginButton";
+import LogoutButton from "./components/LogoutButton";
+import Profile from "./components/Profile";
+import UserIPFetcher from "./components/UserIPFetcher";
+import DashboardLayout from "./components/DashboardLayout";
+import LandingPage from "./components/LandingPage";
+import "./App.css";
+import { AuthProvider } from "./contexts/AuthContext";
 
 // Protected route wrapper
 const ProtectedRoute = ({ component, ...args }) => {
@@ -24,20 +35,19 @@ const ProtectedRoute = ({ component, ...args }) => {
 
 const App = () => {
   return (
-    // <LogoutButton><LogoutButton/>
-    <Auth0Provider
-      domain="dev-npxp43tyv3lxsw60.jp.auth0.com"
-      clientId="hGLiZ4PzvkAyqnA0tRBEpPqRd7NpxKdG"
-      authorizationParams={{
-        redirect_uri: window.location.origin
-      }}
-    >
-      <Router>
-        <AppContent />
-      </Router>
-      
-    </Auth0Provider>
-    
+    <AuthProvider>
+      <Auth0Provider
+        domain="dev-npxp43tyv3lxsw60.jp.auth0.com"
+        clientId="hGLiZ4PzvkAyqnA0tRBEpPqRd7NpxKdG"
+        authorizationParams={{
+          redirect_uri: window.location.origin,
+        }}
+      >
+        <Router>
+          <AppContent />
+        </Router>
+      </Auth0Provider>
+    </AuthProvider>
   );
 };
 
@@ -59,7 +69,10 @@ const AppContent = () => {
         <div className="error-icon">⚠️</div>
         <h2>Authentication Error</h2>
         <p>{error.message}</p>
-        <button onClick={() => window.location.reload()} className="retry-button">
+        <button
+          onClick={() => window.location.reload()}
+          className="retry-button"
+        >
           Try Again
         </button>
       </div>
@@ -69,33 +82,39 @@ const AppContent = () => {
   return (
     <div className="app-container">
       <Routes>
-        <Route 
-          path="/" 
-          element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LandingPage />} 
-        />
-        <Route 
-          path="/dashboard" 
+        <Route
+          path="/"
           element={
-            <ProtectedRoute 
+            isAuthenticated ? (
+              <Navigate to="/dashboard" replace />
+            ) : (
+              <LandingPage />
+            )
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute
               component={() => (
                 <DashboardLayout>
                   <UserIPFetcher />
                 </DashboardLayout>
-              )} 
+              )}
             />
-          } 
+          }
         />
-        <Route 
-          path="/profile" 
+        <Route
+          path="/profile"
           element={
-            <ProtectedRoute 
+            <ProtectedRoute
               component={() => (
                 <DashboardLayout>
                   <Profile />
                 </DashboardLayout>
-              )} 
+              )}
             />
-          } 
+          }
         />
       </Routes>
     </div>
