@@ -56,7 +56,7 @@ const DashboardLayout = () => {
 
       {/* Header with Logout Button */}
       <div className="ip-header">
-        <h1>Mahakumbh Digital Presence</h1>
+        <h1>Suraksha Mitra</h1>
         <p>Discover your online footprint and digital identity</p>
         <div className="button-container">
           <Link to="/profile" className="profile-button">

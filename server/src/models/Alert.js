@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const AlertSchema = new mongoose.Schema({
   // Reference to the camera that triggered the alert
@@ -31,7 +31,6 @@ const AlertSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  // Timestamp is auto-generated with the schema option timestamps
 }, { timestamps: true });
 
-module.exports = mongoose.model('Alert', AlertSchema);
+export default mongoose.model('Alert', AlertSchema);

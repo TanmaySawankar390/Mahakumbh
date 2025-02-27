@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const CameraSchema = new mongoose.Schema({
   // Optional name or identifier for the camera
@@ -29,10 +29,14 @@ const CameraSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  // You could add fields like installationDate, status, etc.
+  // Field to store the traffic (e.g., crowd count) detected by AI
+  traffic: {
+    type: Number,
+    default: 0,
+  },
 }, { timestamps: true });
 
-// Geospatial index for efficient queries
+// Geospatial index for efficient location queries
 CameraSchema.index({ location: "2dsphere" });
 
-module.exports = mongoose.model('Camera', CameraSchema);
+export default mongoose.model('Camera', CameraSchema);
