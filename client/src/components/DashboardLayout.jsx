@@ -58,7 +58,12 @@ const DashboardLayout = () => {
         <h1>Mahakumbh Digital Presence</h1>
         <p>Discover your online footprint and digital identity</p>
         <div className="button-container">
-          <Link to="/profile" className="profile-button">👤 Profile</Link>
+          <Link to="/profile" className="profile-button">
+            👤 Profile
+          </Link>
+          <Link to="/users" className="users-button">
+            👥 All Users
+          </Link>
           <LogoutButton />
         </div>
       </div>
