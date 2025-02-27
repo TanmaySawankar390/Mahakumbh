@@ -62,9 +62,6 @@ const DashboardLayout = () => {
           <Link to="/profile" className="profile-button">
             👤 Profile
           </Link>
-          <Link to="/users" className="users-button">
-            👥 All Users
-          </Link>
           <LogoutButton />
         </div>
       </div>

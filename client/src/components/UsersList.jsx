@@ -46,7 +46,7 @@ const UsersList = () => {
         <h1>User Management</h1>
         <p>All registered users in the system</p>
         <div className="button-container">
-          <Link to="/dashboard" className="back-button">
+          <Link to="/admin-dashboard" className="back-button">
             ← Back to Dashboard
           </Link>
         </div>

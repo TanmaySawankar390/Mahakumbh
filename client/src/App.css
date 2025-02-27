@@ -1,3 +1,15 @@
+.police-button{
+  height: 45px;
+  width: 100px;
+  border-radius: 10px;
+  border: 0;
+  background-color: burlywood;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+
+
 .users-button {
   text-decoration: none;
   background-color: #6c5ce7;
@@ -387,7 +399,7 @@ body {
 .logout-button {
   display: flex;
   align-items: center;
-  margin: 20px;
+  margin-top: 15px;
   padding: 12px;
   background-color: rgba(220, 38, 38, 0.2);
   color: #fecaca;
@@ -396,6 +408,7 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
   font-weight: 600;
+  height: 45px;
 }
 
 .logout-button:hover {

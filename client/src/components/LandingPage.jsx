@@ -4,6 +4,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 const LandingPage = () => {
   const { loginWithRedirect } = useAuth0();
 
+  const handleLogin = (role) => {
+    loginWithRedirect({
+      appState: { target: role === "user" ? "/dashboard" : "/admin-dashboard" },
+    });
+  };
+
   return (
     <div className="landing-page">
       <div className="landing-overlay"></div>
@@ -14,7 +20,7 @@ const LandingPage = () => {
         </div>
         <h2>Discover Your Digital Presence</h2>
         <p>Unlock powerful insights about your online footprint with our secure platform.</p>
-        
+
         <div className="features-container">
           <div className="feature">
             <div className="feature-icon">🌐</div>
@@ -32,13 +38,15 @@ const LandingPage = () => {
             <p>Get results in milliseconds</p>
           </div>
         </div>
-        
-        <button 
-          onClick={() => loginWithRedirect()}
-          className="cta-button"
-        >
-          Begin Your Journey
-        </button>
+
+        <div className="login-options">
+          <button onClick={() => handleLogin('user')} className="cta-button">
+            Login as User
+          </button>
+          <button onClick={() => handleLogin('admin')} className="cta-button admin-button">
+            Login as Admin
+          </button>
+        </div>
       </div>
     </div>
   );
