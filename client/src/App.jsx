@@ -17,8 +17,8 @@ import Profile from "./components/Profile";
 import UserIPFetcher from "./components/UserIPFetcher";
 import DashboardLayout from "./components/DashboardLayout";
 import LandingPage from "./components/LandingPage";
+import UsersList from "./components/UsersList";
 import "./App.css";
-import { AuthProvider } from "./contexts/AuthContext";
 
 // Protected route wrapper
 const ProtectedRoute = ({ component, ...args }) => {
@@ -35,19 +35,17 @@ const ProtectedRoute = ({ component, ...args }) => {
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Auth0Provider
-        domain="dev-npxp43tyv3lxsw60.jp.auth0.com"
-        clientId="hGLiZ4PzvkAyqnA0tRBEpPqRd7NpxKdG"
-        authorizationParams={{
-          redirect_uri: window.location.origin,
-        }}
-      >
-        <Router>
-          <AppContent />
-        </Router>
-      </Auth0Provider>
-    </AuthProvider>
+    <Auth0Provider
+      domain="dev-npxp43tyv3lxsw60.jp.auth0.com"
+      clientId="hGLiZ4PzvkAyqnA0tRBEpPqRd7NpxKdG"
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+      }}
+    >
+      <Router>
+        <AppContent />
+      </Router>
+    </Auth0Provider>
   );
 };
 
@@ -106,16 +104,9 @@ const AppContent = () => {
         />
         <Route
           path="/profile"
-          element={
-            <ProtectedRoute
-              component={() => (
-                <DashboardLayout>
-                  <Profile />
-                </DashboardLayout>
-              )}
-            />
-          }
+          element={<ProtectedRoute component={Profile} />}
         />
+        <Route path="/users" element={<UsersList />} />
       </Routes>
     </div>
   );
