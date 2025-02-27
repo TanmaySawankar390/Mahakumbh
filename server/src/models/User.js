@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
   {
+    userid: {
+      type: String, // changed from ObjectId to String
+      unique: true,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -28,12 +33,11 @@ const UserSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true } // removed _id: false to allow Mongoose to auto-generate it
 );
 
 // Create a geospatial index for efficient location queries
 UserSchema.index({ location: "2dsphere" });
 
-// Change from CommonJS to ES module export
 const User = mongoose.model("User", UserSchema);
 export default User;

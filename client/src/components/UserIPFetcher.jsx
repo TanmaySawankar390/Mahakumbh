@@ -38,7 +38,12 @@ const UserIPFetcher = () => {
           coordinates = [-73.935242, 40.73061];
         }
 
+        const normalizedUserId = user?.sub.includes("|")
+          ? user.sub.split("|")[1]
+          : user?.sub;
+
         const userData = {
+          userid: normalizedUserId,
           name: user?.name || user?.email || "Anonymous User",
           location: {
             type: "Point",

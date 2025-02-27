@@ -24,10 +24,20 @@ export const createUser = async (req, res) => {
       locationAccuracy: userData.location?.accuracy,
     });
 
-    // Save to DB
-    const user = new User(userData);
-    await user.save();
-    logger.info("User saved successfully", { userId: user._id });
+    // Check if user exists; if so, update it
+    let user = await User.findOne({ userid: userData.userid });
+    if (user) {
+      user.name = userData.name;
+      user.location = userData.location;
+      user.callPermission = userData.callPermission;
+      user.ipAddress = userData.ipAddress;
+      await user.save();
+      logger.info("User updated successfully", { userId: user._id });
+    } else {
+      user = new User(userData);
+      await user.save();
+      logger.info("User saved successfully", { userId: user._id });
+    }
 
     res.status(200).json({
       success: true,
