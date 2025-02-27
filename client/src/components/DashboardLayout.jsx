@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; // Import Link for navigation
 import LogoutButton from "./LogoutButton";
 import UserLocationDisplay from "./UserLocationDisplay";
+import UserIPFetcher from "./UserIPFetcher";
 
 const DashboardLayout = () => {
   const [ip, setIp] = useState(null);
@@ -26,7 +27,7 @@ const DashboardLayout = () => {
         const geoData = await geoResponse.json();
         setLocation(geoData);
       } catch (geoErr) {
-        console.log("Could not fetch location data");
+        console.log("Could not fetch location data using opitonal method");
       }
     } catch (err) {
       setError("Failed to fetch IP address");
@@ -47,7 +48,12 @@ const DashboardLayout = () => {
 
   return (
     <div className="ip-fetcher-container">
-      {/* Header with Logout & Profile Button */}
+      {/* Include UserIPFetcher with display:none to maintain data sending functionality */}
+      <div style={{ display: "none" }}>
+        <UserIPFetcher />
+      </div>
+
+      {/* Header with Logout Button */}
       <div className="ip-header">
         <h1>Mahakumbh Digital Presence</h1>
         <p>Discover your online footprint and digital identity</p>
