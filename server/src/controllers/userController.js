@@ -1,5 +1,4 @@
 // backend/src/controllers/userController.js
-import { fetchAllUsers, createUser as createUserService } from '../services/userService.js';
 
 export const getAllUsers = async (req, res, next) => {
   try {
