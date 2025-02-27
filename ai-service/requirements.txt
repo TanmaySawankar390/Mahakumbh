@@ -2,3 +2,4 @@ numpy
 opencv-python
 TIME-python
 opencv-contrib-python
+requests
