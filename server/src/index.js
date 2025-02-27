@@ -1,8 +1,9 @@
 // backend/src/server.js
-import express from 'express';
-import dotenv from 'dotenv';
-import connectDB from './config/database.js';
-import userRoutes from './routes/userRoutes.js';
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./config/database.js";
+import userRoutes from "./routes/userRoutes.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -11,16 +12,19 @@ connectDB();
 
 const app = express();
 
+// Enable CORS for all routes
+app.use(cors());
+
 // Middleware to parse JSON requests
 app.use(express.json());
 
 // Use the user routes
-app.use('/api/users', userRoutes);
+app.use("/api/users", userRoutes);
 
 // Global error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ message: 'Internal Server Error' });
+  res.status(500).json({ message: "Internal Server Error" });
 });
 
 // Start the server

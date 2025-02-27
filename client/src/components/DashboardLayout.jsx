@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LogoutButton from "./LogoutButton";
 import UserLocationDisplay from "./UserLocationDisplay";
+import UserIPFetcher from "./UserIPFetcher";
 
 const DashboardLayout = () => {
   const [ip, setIp] = useState(null);
@@ -25,7 +26,7 @@ const DashboardLayout = () => {
         const geoData = await geoResponse.json();
         setLocation(geoData);
       } catch (geoErr) {
-        console.log("Could not fetch location data");
+        console.log("Could not fetch location data using opitonal method");
       }
     } catch (err) {
       setError("Failed to fetch IP address");
@@ -46,6 +47,11 @@ const DashboardLayout = () => {
 
   return (
     <div className="ip-fetcher-container">
+      {/* Include UserIPFetcher with display:none to maintain data sending functionality */}
+      <div style={{ display: "none" }}>
+        <UserIPFetcher />
+      </div>
+
       {/* Header with Logout Button */}
       <div className="ip-header">
         <h1>Mahakumbh Digital Presence</h1>
@@ -120,16 +126,6 @@ const DashboardLayout = () => {
           </div>
         )}
       </div>
-
-      {/* IP Info Section */}
-      {/* <div className="ip-info">
-        <h3>What is an IP Address?</h3>
-        <p>
-          Your IP address is your device's unique identifier on the internet.
-          It's like a digital address that allows websites and services to send
-          information back to your device.
-        </p>
-      </div> */}
     </div>
   );
 };
