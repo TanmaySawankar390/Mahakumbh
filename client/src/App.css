@@ -8,7 +8,16 @@
   font-weight: bold;
 }
 
-
+.admin-switch{
+  height: 45px;
+  width: 45px;
+  border-radius: 10px;
+  border: 0;
+  background-color: burlywood;
+  margin-top: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
 
 .users-button {
   text-decoration: none;

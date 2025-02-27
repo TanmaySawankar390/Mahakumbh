@@ -28,7 +28,7 @@ const DashboardLayout = () => {
         const geoData = await geoResponse.json();
         setLocation(geoData);
       } catch (geoErr) {
-        console.log("Could not fetch location data using opitonal method");
+        console.log("Could not fetch location data using optional method");
       }
     } catch (err) {
       setError("Failed to fetch IP address");
@@ -54,13 +54,16 @@ const DashboardLayout = () => {
         <UserIPFetcher />
       </div>
 
-      {/* Header with Logout Button */}
+      {/* Header with Logout Button and Role Switch */}
       <div className="ip-header">
         <h1>Suraksha Mitra</h1>
         <p>Discover your online footprint and digital identity</p>
         <div className="button-container">
           <Link to="/profile" className="profile-button">
             👤 Profile
+          </Link>
+          <Link to="/admin-dashboard" className="admin-switch">
+             
           </Link>
           <LogoutButton />
         </div>
