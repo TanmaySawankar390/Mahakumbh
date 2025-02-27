@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // Import Link for navigation
 import LogoutButton from "./LogoutButton";
 import UserLocationDisplay from "./UserLocationDisplay";
 
@@ -46,11 +47,12 @@ const DashboardLayout = () => {
 
   return (
     <div className="ip-fetcher-container">
-      {/* Header with Logout Button */}
+      {/* Header with Logout & Profile Button */}
       <div className="ip-header">
         <h1>Mahakumbh Digital Presence</h1>
         <p>Discover your online footprint and digital identity</p>
-        <div className="logout-button-container">
+        <div className="button-container">
+          <Link to="/profile" className="profile-button">👤 Profile</Link>
           <LogoutButton />
         </div>
       </div>
@@ -120,16 +122,6 @@ const DashboardLayout = () => {
           </div>
         )}
       </div>
-
-      {/* IP Info Section */}
-      {/* <div className="ip-info">
-        <h3>What is an IP Address?</h3>
-        <p>
-          Your IP address is your device's unique identifier on the internet.
-          It's like a digital address that allows websites and services to send
-          information back to your device.
-        </p>
-      </div> */}
     </div>
   );
 };
