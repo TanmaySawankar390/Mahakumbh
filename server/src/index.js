@@ -3,6 +3,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/database.js';
 import userRoutes from './routes/userRoutes.js';
+import navigationRoutes from './routes/navigation.js';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -10,12 +12,14 @@ dotenv.config();
 connectDB();
 
 const app = express();
-
+app.use(cors());
 // Middleware to parse JSON requests
 app.use(express.json());
 
 // Use the user routes
 app.use('/api/users', userRoutes);
+
+app.use('/api/navigation', navigationRoutes);
 
 // Global error handling middleware
 app.use((err, req, res, next) => {
