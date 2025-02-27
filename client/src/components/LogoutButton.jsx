@@ -9,7 +9,7 @@ const LogoutButton = () => {
       onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
       className="logout-button"
     >
-      🚪 Sign Out
+      🚪 Log Out
     </button>
   );
 };
