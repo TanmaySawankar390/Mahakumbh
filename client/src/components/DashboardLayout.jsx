@@ -109,6 +109,9 @@ const DashboardLayout = () => {
           >
             👤 Profile
           </Link>
+          <Link to="/admin-dashboard" className="admin-switch">
+             
+          </Link>
           <LogoutButton />
         </div>
       </div>
