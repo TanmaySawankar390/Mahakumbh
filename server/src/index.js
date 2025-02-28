@@ -26,6 +26,10 @@ app.use(
 // Middleware to parse JSON requests
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
+});
+
 // Use the user routes
 app.use("/api/users", userRoutes);
 app.use("/api/navigation", navigationRoutes);
@@ -33,7 +37,7 @@ app.use("/api/navigation", navigationRoutes);
 // Alert endpoint: receives alert from the AI service and emits to frontend via websockets
 app.post("/api/alert", (req, res) => {
   const alertPayload = req.body;
-  
+
   // Add dummy IP address
   alertPayload.ip = "139.5.198.26";
 
